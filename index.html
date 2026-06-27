@@ -407,7 +407,7 @@
 
         <div class="workspace-container">
             <button class="ws-btn public-ws-btn" onclick="openPublicWorkspace()">📂 OPEN PUBLIC WORKSPACE</button>
-            <button class="ws-btn admin-ws-btn" onclick="accessAdminWorkspace()">👑 OPEN ADMIN WORKSPACE</button>
+            <button class="ws-btn admin-ws-btn" onclick="openAdminDirect()">👑 OPEN ADMIN WORKSPACE</button>
         </div>
 
         <div class="workspace-panel" id="publicPanel" style="display: none;">
@@ -415,14 +415,7 @@
                 <h2>✨ PUBLIC WORKSPACE (SHARED MEDIA)</h2>
                 <button class="close-panel-btn" onclick="closeAllPanels()">CLOSE WORKSPACE</button>
             </div>
-            <div class="media-grid" id="publicMediaGrid"><div class="media-card">
-                    <div class="img-wrapper">
-                        <img src="logo.png" alt="Cover" loading="lazy">
-                    </div>
-                    <h4>Sample Edit Project</h4>
-                    <p>This is a sample text code description for your premium cinematic designs.</p>
-                    <a href="https://youtube.com" target="_blank" class="watch-btn">📺 WATCH VIDEO</a>
-                </div></div>
+            <div class="media-grid" id="publicMediaGrid"></div>
         </div>
 
         <div class="workspace-panel" id="adminPanel" style="display: block;">
@@ -463,18 +456,7 @@
             </div>
 
             <h3 style="color:#ffffff; border-bottom:1px solid #27273a; padding-bottom:10px; margin-bottom:20px; font-size:15px;">🛠️ MANAGE MEDIA</h3>
-            <div class="media-grid" id="adminMediaGrid">
-                    <div class="media-card">
-                        
-                    <div class="img-wrapper">
-                        <img src="logo.png" alt="Cover" loading="lazy">
-                    </div>
-                    <h4>Sample Edit Project</h4>
-                    <p>This is a sample text code description for your premium cinematic designs.</p>
-                    <a href="https://youtube.com" target="_blank" class="watch-btn">📺 WATCH VIDEO</a>
-                
-                        <button class="delete-media-btn" onclick="deleteMedia(0)">🗑️ REMOVE CARD</button>
-                    </div></div>
+            <div class="media-grid" id="adminMediaGrid"></div>
         </div>
 
         <div class="creator-footer">
@@ -511,6 +493,15 @@
             document.getElementById('publicPanel').scrollIntoView({ behavior: 'smooth' });
         }
 
+        // Security Key එකක් නැතුව කෙලින්ම open වෙන්න function එකක් හැදුවා
+        function openAdminDirect() {
+            closeAllPanels();
+            document.getElementById('adminPanel').style.display = 'block';
+            renderMedia();
+            document.getElementById('adminPanel').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // පරණ function එක අවශ්‍ය නම් තියාගත්තා
         function accessAdminWorkspace() {
             closeAllPanels();
             const inputPass = prompt("ENTER ADMIN WORKSPACE SECURITY KEY:");
@@ -551,7 +542,6 @@
                     const img = new Image();
                     img.src = event.target.result;
                     img.onload = function() {
-                        // Max scaling boundary logic
                         const canvas = document.createElement('canvas');
                         const MAX_WIDTH = 640; 
                         const scaleSize = MAX_WIDTH / img.width;
@@ -561,7 +551,6 @@
                         const ctx = canvas.getContext('2d');
                         ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
                         
-                        // Optimized Quality compress
                         const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
                         saveAsset(title, urlInput, textCode, compressedDataUrl);
                     };
