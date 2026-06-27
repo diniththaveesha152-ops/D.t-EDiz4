@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="si"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D.T TRENDS | Ultimate Matrix Studio</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, -apple-system, sans-serif;
+            background: #020204;
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(212, 175, 55, 0.25) 0%, transparent 60%),
+                radial-gradient(circle at 0% 100%, rgba(20, 20, 30, 0.8) 0%, transparent 50%),
+                linear-gradient(to bottom, #020204, #060609);
+            color: #ffffff;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            cursor: none; 
+        }
+
+        /* 👑 SMOOTH METEOR GOLD DUST MOUSE POINTER */
+        #custom-pointer {
+            width: 14px;
+            height: 14px;
+            background: #ffe066;
+            border: 2px solid #d4af37;
+            border-radius: 50%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 20px #d4af37, 0 0 40px #ffe066;
+            transition: transform 0.12s cubic-bezier(0.1, 0.8, 0.2, 1);
+            will-change: left, top, transform;
+        }
+
+        body.hover-active #custom-pointer {
+            transform: translate(-50%, -50%) scale(2.2);
+            background: transparent;
+            border-color: #ffffff;
+            box-shadow: 0 0 30px #ffffff;
+        }
+
+        /* 🖼️ METALLIC LUXURY SHADOW FRAME */
+        .portfolio-frame {
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            background: rgba(6, 6, 10, 0.85);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.95), 0 0 100px rgba(212, 175, 55, 0.1);
+            border-radius: 24px;
+            padding: 50px 30px;
+            width: 1200px;
+            max-width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .brand-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #d4af37;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+            margin-bottom: 10px;
+        }
+
+        .animated-title {
+            font-size: clamp(30px, 5vw, 52px);
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 12px;
+            margin: 15px 0 5px 0;
+            background: linear-gradient(135deg, #ffffff 20%, #d4af37 60%, #ffe066 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+            animation: subtleGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes subtleGlow {
+            from { filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.2)); }
+            to { filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.5)); }
+        }
+
+        .subtitle {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: #ffe066;
+            opacity: 0.8;
+            margin-bottom: 35px;
+        }
+
+        .link-buttons-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .yt-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 40px;
+            background: linear-gradient(45deg, #ff0000, #b30000);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 13px;
+            letter-spacing: 2px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        .yt-btn:hover { transform: scale(1.04); box-shadow: 0 0 35px #ff0000; }
+
+        .movies-btn, .games-btn {
+            display: inline-block;
+            border-radius: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            width: 260px;
+        }
+
+        .movies-btn {
+            padding: 15px 0;
+            background: linear-gradient(90deg, #0f0f14, #1a1a26, #332600, #1a1a26, #0f0f14);
+            color: #ffffff;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        .movies-btn:hover { box-shadow: 0 0 30px rgba(212, 175, 55, 0.4); border-color: #ffe066; transform: scale(1.04); color: #ffe066; }
+
+        .games-btn {
+            padding: 15px 0;
+            background: linear-gradient(90deg, #111827, #1f2937, #111827);
+            color: #00ffcc;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.1);
+        }
+        .games-btn:hover { box-shadow: 0 0 30px rgba(0, 255, 204, 0.5); border-color: #00ffcc; transform: scale(1.04); color: #ffffff; text-shadow: 0 0 10px #00ffcc; }
+
+        .main-video-box {
+            background: rgba(4, 4, 6, 0.95);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.8);
+        }
+        .main-video-box h3 { margin: 0 0 15px 0; color: #d4af37; letter-spacing: 4px; font-size: 14px; text-transform: uppercase;}
+        
+        .video-container {
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            background: #000;
+            aspect-ratio: 16/9;
+        }
+        video { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .workspace-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 35px;
+        }
+
+        .ws-btn {
+            padding: 16px 35px;
+            border-radius: 12px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+        }
+
+        .public-ws-btn {
+            background: linear-gradient(90deg, #1f1f2e, #332600);
+            color: #ffe066;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        .public-ws-btn:hover { box-shadow: 0 0 30px rgba(212, 175, 55, 0.35); transform: translateY(-3px); }
+
+        .admin-ws-btn {
+            background: linear-gradient(90deg, #aa7c11, #d4af37);
+            color: #000000;
+            border: 1px solid #ffe066;
+        }
+        .admin-ws-btn:hover { box-shadow: 0 0 40px #ffe066; transform: translateY(-3px); }
+
+        .workspace-panel {
+            display: none;
+            background: rgba(4, 4, 6, 0.98);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            text-align: left;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .panel-header h2 { margin: 0; color: #d4af37; font-size: 18px; letter-spacing: 2px; }
+
+        .close-panel-btn {
+            background: transparent;
+            border: 1px solid #ff4d4d;
+            color: #ff4d4d;
+            padding: 6px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+        .close-panel-btn:hover { background: #ff4d4d; color: #fff; }
+
+        /* 🖼️ HIGH-PREMIUM CARDS STYLE */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .media-card {
+            background: linear-gradient(135deg, #0c0c12 0%, #06060a 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 16px;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+        .media-card:hover { 
+            border-color: rgba(212, 175, 55, 0.6); 
+            transform: translateY(-6px); 
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.1);
+        }
+
+        .media-card .img-wrapper {
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #000;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .media-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .media-card:hover img { transform: scale(1.06); }
+
+        .media-card h4 {
+            font-size: 16px;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .media-card p {
+            font-size: 12px;
+            color: #a1a1aa;
+            line-height: 1.6;
+            flex-grow: 1;
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.02);
+            font-family: monospace;
+            word-break: break-all;
+        }
+
+        .watch-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
+            background: linear-gradient(45deg, #d4af37, #ffe066);
+            color: #000;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 12px;
+            border-radius: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+        .watch-btn:hover { background: #ffffff; box-shadow: 0 4px 25px rgba(212, 175, 55, 0.4); transform: scale(1.02); }
+
+        .upload-box {
+            background: #0c0c12;
+            border: 2px dashed rgba(212, 175, 55, 0.3);
+            padding: 25px;
+            border-radius: 14px;
+            margin-bottom: 35px;
+        }
+
+        .upload-form-group { margin-bottom: 15px; }
+        .upload-form-group label { display: block; font-size: 12px; color: #a1a1aa; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
+        .upload-form-group input, .upload-form-group textarea { width: 100%; padding: 12px; background: #12121a; border: 1px solid #27273a; color: white; border-radius: 8px; font-family: inherit; }
+        .upload-form-group input:focus, .upload-form-group textarea:focus { border-color: #d4af37; outline: none; }
+        .upload-form-group textarea { resize: vertical; height: 100px; }
+
+        .submit-btn { background: linear-gradient(45deg, #d4af37, #ffe066); color: black; font-weight: bold; padding: 14px; border: none; border-radius: 8px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; width: 100%; transition: all 0.2s; }
+        .submit-btn:hover { background: #ffffff; box-shadow: 0 0 20px rgba(212, 175, 55, 0.5); }
+        
+        .export-box {
+            background: #050508;
+            border: 1px solid #d4af37;
+            padding: 18px;
+            border-radius: 12px;
+            margin-top: 20px;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        .export-box textarea { width: 100%; height: 140px; background: #000; color: #00ffcc; border: 1px solid #222; padding: 12px; font-family: monospace; font-size: 11px; resize: none; margin-top: 10px; border-radius: 6px;}
+
+        .delete-media-btn { background: #ff4d4d; color: white; border: none; padding: 10px; border-radius: 8px; font-size: 11px; cursor: pointer; width: 100%; font-weight: bold; text-transform: uppercase; transition: 0.2s;}
+        .delete-media-btn:hover { background: #ff1a1a; }
+
+        .creator-footer {
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid #12121a;
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #4b5563;
+            text-transform: uppercase;
+        }
+        .creator-footer span { color: #d4af37; }
+    </style>
+</head>
+<body class="hover-active">
+
+    <audio id="welcomeAudio" src="welcome.mp3" preload="auto" loop=""></audio>
+
+    <div id="custom-pointer" style="left: 656px; top: 628px;"></div>
+
+    <div class="portfolio-frame">
+        <img src="logo.png" alt="Logo" class="brand-logo">
+        
+        <h1 class="animated-title">D.T TRENDS</h1>
+        <div class="subtitle">CREATIVE MATRIX WORKSPACE</div>
+
+        <div class="link-buttons-wrapper">
+            <a href="https://youtube.com/@d.tediz2050?si=p64MsaX1lk9mxzNo" target="_blank" class="yt-btn">🔻 MY YOUTUBE</a>
+            <a href="https://cinesubz.net/" target="_blank" class="movies-btn">🎬 MY MOVIES</a>
+            <a href="https://gamedrive.org/" target="_blank" class="games-btn">🎮 MY GAMES</a>
+        </div>
+
+        <div class="main-video-box">
+            <h3>✨ FEATURED VIDEO ✨</h3>
+            <div class="video-container">
+                <video id="mainPlayer" autoplay="" loop="" controls="" muted="" playsinline="">
+                    <source src="myvideo1.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <div class="workspace-container">
+            <button class="ws-btn public-ws-btn" onclick="openPublicWorkspace()">📂 OPEN PUBLIC WORKSPACE</button>
+            <button class="ws-btn admin-ws-btn" onclick="accessAdminWorkspace()">👑 OPEN ADMIN WORKSPACE</button>
+        </div>
+
+        <div class="workspace-panel" id="publicPanel" style="display: none;">
+            <div class="panel-header">
+                <h2>✨ PUBLIC WORKSPACE (SHARED MEDIA)</h2>
+                <button class="close-panel-btn" onclick="closeAllPanels()">CLOSE WORKSPACE</button>
+            </div>
+            <div class="media-grid" id="publicMediaGrid"><div class="media-card">
+                    <div class="img-wrapper">
+                        <img src="logo.png" alt="Cover" loading="lazy">
+                    </div>
+                    <h4>Sample Edit Project</h4>
+                    <p>This is a sample text code description for your premium cinematic designs.</p>
+                    <a href="https://youtube.com" target="_blank" class="watch-btn">📺 WATCH VIDEO</a>
+                </div></div>
+        </div>
+
+        <div class="workspace-panel" id="adminPanel" style="display: block;">
+            <div class="panel-header">
+                <h2>⚡ ADMIN WORKSPACE &amp; CONTROLS</h2>
+                <button class="close-panel-btn" onclick="closeAllPanels()">CLOSE ADMIN</button>
+            </div>
+
+            <div class="upload-box">
+                <h3 style="color:#d4af37; margin-top:0; font-size:15px; margin-bottom:15px;">📥 PUBLISH VIDEO CARD (YT LINK + TEXT CODE + COVER PHOTO)</h3>
+                
+                <div class="upload-form-group">
+                    <label>Video Title / Name</label>
+                    <input type="text" id="mediaTitle" placeholder="Ex: Cinematic Wolf Cut Edit 4K">
+                </div>
+
+                <div class="upload-form-group">
+                    <label>YouTube Link</label>
+                    <input type="text" id="mediaUrl" placeholder="https://www.youtube.com/watch?v=...">
+                </div>
+
+                <div class="upload-form-group">
+                    <label>Text Code / Description</label>
+                    <textarea id="mediaTextCode" placeholder="Paste your text code or custom taglines here..."></textarea>
+                </div>
+
+                <div class="upload-form-group">
+                    <label>Cover Photo / Thumbnail (Autocompressed Smart Tech)</label>
+                    <input type="file" id="mediaFile" accept="image/*">
+                </div>
+
+                <button class="submit-btn" onclick="processUpload()">GENERATE GLOBAL MASTER CODE</button>
+                
+                <div class="export-box" id="exportBox">
+                    <p style="color:#ffe066; font-size:13px; font-weight: bold;">👇 ඩිනිත්, හැමෝටම ලයිව් පේන්න මේ ලැබුණු මුළු කේතය (Code) කොපි කරලා ඔයාගේ HTML ෆයිල් එකට දමා Replace කරන්න:</p>
+                    <textarea id="exportArea" readonly="" onclick="this.select()"></textarea>
+                </div>
+            </div>
+
+            <h3 style="color:#ffffff; border-bottom:1px solid #27273a; padding-bottom:10px; margin-bottom:20px; font-size:15px;">🛠️ MANAGE MEDIA</h3>
+            <div class="media-grid" id="adminMediaGrid">
+                    <div class="media-card">
+                        
+                    <div class="img-wrapper">
+                        <img src="logo.png" alt="Cover" loading="lazy">
+                    </div>
+                    <h4>Sample Edit Project</h4>
+                    <p>This is a sample text code description for your premium cinematic designs.</p>
+                    <a href="https://youtube.com" target="_blank" class="watch-btn">📺 WATCH VIDEO</a>
+                
+                        <button class="delete-media-btn" onclick="deleteMedia(0)">🗑️ REMOVE CARD</button>
+                    </div></div>
+        </div>
+
+        <div class="creator-footer">
+            <p>Created By: <span>Dinith Thaveesha</span> | Most Wanted Edition</p>
+        </div>
+    </div>
+
+    <script>
+        const ADMIN_PASSWORD = "admin123";  
+
+        // 🌟 GLOBAL SAVED DATA STORAGE INJECTED NODE
+        let GLOBAL_MEDIA_DATA = [{"title":"Sample Edit Project","url":"https://youtube.com","textCode":"This is a sample text code description for your premium cinematic designs.","photo":"logo.png"},{"title":"e","url":"a","textCode":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","photo":"logo.png"}];
+
+        let audioActivated = false;
+        function activateAudio() {
+            if (!audioActivated) {
+                const welcomeSound = document.getElementById('welcomeAudio');
+                welcomeSound.play().then(() => { audioActivated = true; }).catch(e => {});
+            }
+        }
+        window.addEventListener('click', activateAudio);
+        window.addEventListener('pointerdown', activateAudio);
+
+        const pointer = document.getElementById('custom-pointer');
+        window.addEventListener('mousemove', (e) => {
+            pointer.style.left = e.clientX + 'px';
+            pointer.style.top = e.clientY + 'px';
+        });
+
+        function openPublicWorkspace() {
+            closeAllPanels();
+            document.getElementById('publicPanel').style.display = 'block';
+            renderMedia();
+            document.getElementById('publicPanel').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function accessAdminWorkspace() {
+            closeAllPanels();
+            const inputPass = prompt("ENTER ADMIN WORKSPACE SECURITY KEY:");
+            if (inputPass === ADMIN_PASSWORD) {
+                document.getElementById('adminPanel').style.display = 'block';
+                renderMedia();
+                document.getElementById('adminPanel').scrollIntoView({ behavior: 'smooth' });
+            } else if (inputPass !== null) {
+                alert("ACCESS DENIED: Invalid Security Key!");
+            }
+        }
+
+        document.querySelectorAll('button, select, input, a, textarea').forEach(elem => {
+            elem.addEventListener('mouseenter', () => document.body.classList.add('hover-active'));
+            elem.addEventListener('mouseleave', () => document.body.classList.remove('hover-active'));
+        });
+
+        function closeAllPanels() {
+            document.getElementById('publicPanel').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'none';
+        }
+
+        // 🧠 SMART COVERS COMPRESSION ALGORITHM TO PREVENT CRASHES
+        function processUpload() {
+            const title = document.getElementById('mediaTitle').value.trim();
+            const urlInput = document.getElementById('mediaUrl').value.trim();
+            const textCode = document.getElementById('mediaTextCode').value.trim();
+            const fileInput = document.getElementById('mediaFile').files[0];
+
+            if (!title || !urlInput || !textCode) { 
+                alert("Please fill Title, YT Link, and Text Code fields!"); 
+                return; 
+            }
+
+            if (fileInput) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const img = new Image();
+                    img.src = event.target.result;
+                    img.onload = function() {
+                        // Max scaling boundary logic
+                        const canvas = document.createElement('canvas');
+                        const MAX_WIDTH = 640; 
+                        const scaleSize = MAX_WIDTH / img.width;
+                        canvas.width = MAX_WIDTH;
+                        canvas.height = img.height * scaleSize;
+
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        
+                        // Optimized Quality compress
+                        const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
+                        saveAsset(title, urlInput, textCode, compressedDataUrl);
+                    };
+                };
+                reader.readAsDataURL(fileInput);
+            } else {
+                saveAsset(title, urlInput, textCode, "logo.png");
+            }
+        }
+
+        function saveAsset(title, url, textCode, photoData) {
+            GLOBAL_MEDIA_DATA.push({ title, url, textCode, photo: photoData });
+            generateUpdatedCode();
+            renderMedia();
+            
+            document.getElementById('mediaTitle').value = "";
+            document.getElementById('mediaUrl').value = "";
+            document.getElementById('mediaTextCode').value = "";
+            document.getElementById('mediaFile').value = "";
+            
+            alert("🔥 Master Premium Card updated without errors! Copy code block below.");
+        }
+
+        function generateUpdatedCode() {
+            let fullHtml = document.documentElement.outerHTML;
+            let regex = /let GLOBAL_MEDIA_DATA = \[\s*[\s\S]*?\s*\];/;
+            let updatedHtml = "<!DOCTYPE html>\n" + fullHtml.replace(regex, `let GLOBAL_MEDIA_DATA = ${JSON.stringify(GLOBAL_MEDIA_DATA)};`);
+
+            document.getElementById('exportBox').style.display = 'block';
+            document.getElementById('exportArea').value = updatedHtml;
+        }
+
+        function renderMedia() {
+            const publicGrid = document.getElementById('publicMediaGrid');
+            const adminGrid = document.getElementById('adminMediaGrid');
+            publicGrid.innerHTML = "";
+            adminGrid.innerHTML = "";
+
+            if(GLOBAL_MEDIA_DATA.length === 0) {
+                const noData = `<p style="color:#4b5563; grid-column:1/-1; text-align:center; padding:20px;">Workspace is empty.</p>`;
+                publicGrid.innerHTML = noData;
+                adminGrid.innerHTML = noData;
+                return;
+            }
+
+            GLOBAL_MEDIA_DATA.forEach((item, index) => {
+                const cardHtml = `
+                    <div class="img-wrapper">
+                        <img src="${item.photo}" alt="Cover" loading="lazy">
+                    </div>
+                    <h4>${item.title}</h4>
+                    <p>${item.textCode.replace(/\n/g, '<br>')}</p>
+                    <a href="${item.url}" target="_blank" class="watch-btn">📺 WATCH VIDEO</a>
+                `;
+
+                publicGrid.innerHTML += `<div class="media-card">${cardHtml}</div>`;
+                adminGrid.innerHTML += `
+                    <div class="media-card">
+                        ${cardHtml}
+                        <button class="delete-media-btn" onclick="deleteMedia(${index})">🗑️ REMOVE CARD</button>
+                    </div>`;
+            });
+        }
+
+        function deleteMedia(index) {
+            if(confirm("Delete this card globally? You will need to save the exported code block again.")) {
+                GLOBAL_MEDIA_DATA.splice(index, 1);
+                generateUpdatedCode();
+                renderMedia();
+            }
+        }
+
+        renderMedia();
+    </script>
+
+</body></html>

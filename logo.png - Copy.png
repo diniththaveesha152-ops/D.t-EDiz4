@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D.T EDIZ | Video Productions</title>
+    <style>
+        /* මුළු පිටුවේම පසුබිම සහ පෙනුම */
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background: radial-gradient(circle, #222222 0%, #111111 100%);
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* ප්‍රධාන කාඩ්පත */
+        .portfolio-card {
+            background: linear-gradient(145deg, #1a1a1a, #262626);
+            border: 2px solid #d4af37; /* රන්වන් පාට බෝඩර් එක */
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7), 0 0 15px rgba(212, 175, 55, 0.2);
+            padding: 40px;
+            width: 450px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(212, 175, 55, 0.4);
+        }
+
+        /* ඔයා එවපු ලෝගෝ එක */
+        .brand-logo {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            margin-bottom: 10px;
+            filter: drop-shadow(0px 5px 10px rgba(0,0,0,0.5));
+        }
+
+        /* උප සිරැසිය */
+        .subtitle {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #d4af37; /* Gold Color */
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        /* විස්තර ඇතුළත් කොටස */
+        .description {
+            font-size: 16px;
+            color: #cccccc;
+            line-height: 1.8;
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #d4af37;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Contact බටන් එක */
+        .cta-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #d4af37, #aa7c11);
+            color: #000000;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            background: linear-gradient(45deg, #ffffff, #d4af37);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="portfolio-card">
+        <img src="logo.png" alt="D.T EDIZ Logo" class="brand-logo">
+        
+        <div class="subtitle">Welcome to My Portfolio</div>
+        
+        <div class="description">
+            ආයුබෝවන්! D.T EDIZ වෙබ් අඩවියට සාදරයෙන් පිළිගන්නවා. මම කරපු වීඩියෝ නිර්මාණ, එඩිට්ස් (Edits) සහ සියලුම විස්තර ඉදිරියේදී මෙතනින් ඔයාලට බලාගන්න පුළුවන්. Stay Tuned!
+        </div>
+        
+        <a href="mailto:your-email@gmail.com" class="cta-btn">Contact Me</a>
+    </div>
+
+</body>
+</html>
